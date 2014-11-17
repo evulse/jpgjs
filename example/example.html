@@ -4,9 +4,10 @@
 <html>
 <head>
 <script src="../jpg.js"></script>
+    <script src="http://humblesoftware.github.io/js-imagediff/js/imagediff.js"></script>
 <script>
 
-function displayImage(canvasId, url) {
+function displayImage(canvasId, url, diffId, origId) {
   var j = new JpegImage();
   j.onload = function() {
     var c = document.getElementById(canvasId);
@@ -16,30 +17,47 @@ function displayImage(canvasId, url) {
     var d = ctx.getImageData(0,0,j.width,j.height);
     j.copyToImageData(d);
     ctx.putImageData(d, 0, 0);
+
+      var x = document.getElementById(diffId)
+      x.width = c.width;
+      x.height = c.height;
+      y = x.getContext('2d');
+      a = document.getElementById(origId);
+      z = imagediff.diff(a, c);
+      y.putImageData(z, 0, 0);
   };
   j.load(url);
 }
 
 function loadImages() {
-  displayImage("c1", "../test/fixtures/j1.jpg");
-  displayImage("c2", "../test/fixtures/j2.jpg");
-  displayImage("c3", "../test/fixtures/j3.jpg");
+  displayImage("c1", "../test/fixtures/j1.jpg" ,"d1" ,"a1");
+  displayImage("c2", "../test/fixtures/j2.jpg" ,"d2" ,"a2");
+  displayImage("c3", "../test/fixtures/j3.jpg" ,"d3" ,"a3");
 }
+
 
 </script>
 </head>
 <body onload="loadImages()">
   <table>
-    <tr><th>baseline</th><th>progressive</th><th>baseline (gray)</th></tr>
+    <tr><th>baseline</th><th>progressive</th><th>baseline (gray)</th><th></th></tr>
     <tr>
       <td><canvas id="c1"></canvas></td>
       <td><canvas id="c2"></canvas></td>
       <td><canvas id="c3"></canvas></td>
+        <th>jpgJS</th>
     </tr>
       <tr>
-          <td><img src="../test/fixtures/j1.jpg"></td>
-          <td><img src="../test/fixtures/j2.jpg"></td>
-          <td><img src="../test/fixtures/j3.jpg"></td>
+          <td><img src="../test/fixtures/j1.jpg" id="a1"></td>
+          <td><img src="../test/fixtures/j2.jpg" id="a2"></td>
+          <td><img src="../test/fixtures/j3.jpg" id="a3"></td>
+          <th>Browser</th>
+      </tr>
+      <tr>
+          <td><canvas id="d1"></canvas></td>
+          <td><canvas id="d2"></canvas></td>
+          <td><canvas id="d3"></canvas></td>
+          <th>Diff</th>
       </tr>
   </table>
 </body></html>

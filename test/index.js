@@ -3,13 +3,15 @@ var vows = require('vows'),
     fs = require('fs'),
 events = require('events'),
     Canvas = require('canvas'),
-    imagediff = require('imagediff')
-    ;
+    imagediff = require('imagediff');
 
 eval(fs.readFileSync('jpg.js')+'');
 
 var a = new Canvas.Image;
 var b = new Canvas.Image;
+
+var canvas = new Canvas(200,200)
+    , ctx = canvas.getContext('2d');
 
 
 // Create a Test Suite
@@ -19,11 +21,12 @@ vows.describe('JPEG decoding').addBatch({
 
             var promise = new(events.EventEmitter);
 
-            fs.readFile(__dirname + '/../j1.jpg', function(err, squid){
+            fs.readFile(__dirname + '/fixtures/j1.jpg', function(err, squid){
                 if (err) throw err;
                 img = new Canvas.Image;
                 img.src = squid;
-                promise.emit("success", img);
+                x = ctx.drawImage(img, 0, 0, img.width, img.height);
+                promise.emit("success", canvas);
             });
 
 
@@ -34,7 +37,7 @@ vows.describe('JPEG decoding').addBatch({
 
                 var promise = new(events.EventEmitter);
 
-                fs.readFile(__dirname + '/../j1.jpg', function(err, squid){
+                fs.readFile(__dirname + '/fixtures/j1.jpg', function(err, squid){
                     if (err) throw err;
                     j = new JpegImage();
                     j.load(squid);
@@ -47,6 +50,7 @@ vows.describe('JPEG decoding').addBatch({
 
             },
             'the generated file matches the original': function (err,b,c) {
+
                 assert.isTrue (imagediff.equal(b, c, 0));
             }
         }
@@ -56,11 +60,12 @@ vows.describe('JPEG decoding').addBatch({
 
             var promise = new(events.EventEmitter);
 
-            fs.readFile(__dirname + '/../j2.jpg', function(err, squid){
+            fs.readFile(__dirname + '/fixtures/j2.jpg', function(err, squid){
                 if (err) throw err;
                 img = new Canvas.Image;
                 img.src = squid;
-                promise.emit("success", img);
+                x = ctx.drawImage(img, 0, 0, img.width, img.height);
+                promise.emit("success", canvas);
             });
 
 
@@ -71,7 +76,7 @@ vows.describe('JPEG decoding').addBatch({
 
                 var promise = new(events.EventEmitter);
 
-                fs.readFile(__dirname + '/../j2.jpg', function(err, squid){
+                fs.readFile(__dirname + '/fixtures/j2.jpg', function(err, squid){
                     if (err) throw err;
                     j = new JpegImage();
                     j.load(squid);
@@ -93,11 +98,12 @@ vows.describe('JPEG decoding').addBatch({
 
             var promise = new(events.EventEmitter);
 
-            fs.readFile(__dirname + '/../j3.jpg', function(err, squid){
+            fs.readFile(__dirname + '/fixtures/j3.jpg', function(err, squid){
                 if (err) throw err;
                 img = new Canvas.Image;
                 img.src = squid;
-                promise.emit("success", img);
+                x = ctx.drawImage(img, 0, 0, img.width, img.height);
+                promise.emit("success", canvas);
             });
 
 
@@ -108,7 +114,7 @@ vows.describe('JPEG decoding').addBatch({
 
                 var promise = new(events.EventEmitter);
 
-                fs.readFile(__dirname + '/../j3.jpg', function(err, squid){
+                fs.readFile(__dirname + '/fixtures/j3.jpg', function(err, squid){
                     if (err) throw err;
                     j = new JpegImage();
                     j.load(squid);
