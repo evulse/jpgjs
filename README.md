@@ -1,5 +1,4 @@
-
-[![Build Status](https://travis-ci.org/evulse/jpgjs.svg?branch=master)](https://travis-ci.org/evulse/jpgjs)
+https://travis-ci.org/evulse/jpgjs.svg?branch=master
 
 jpgjs
 =====
