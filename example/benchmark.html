@@ -30,7 +30,7 @@ Benchmark.prototype.nextImage = function() {
     var data = new Uint8Array(xhr.response || xhr.mozResponseArrayBuffer);
     for (var i = 0; i < this.config.samples; i++) {
       times.push(performance.now());
-      var j = new JpegImage();
+      var j = new jpgjs.JpegImage();
       j.parse(data);
       times.push(performance.now());
     }
@@ -80,9 +80,9 @@ Benchmark.prototype.finish = function() {
 function go() {
   var config = {
     images: [
-      '../test/fixtures/j1.jpg',
-      '../test/fixtures/j2.jpg',
-      '../test/fixtures/j3.jpg'
+      '../fixtures/j1.jpg',
+      '../fixtures/j2.jpg',
+      '../fixtures/j3.jpg'
     ],
     samples: 50
   };

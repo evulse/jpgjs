@@ -8,7 +8,7 @@
 <script>
 
 function displayImage(canvasId, url, diffId, origId) {
-  var j = new JpegImage();
+  var j = new jpgjs.JpegImage();
   j.onload = function() {
     var c = document.getElementById(canvasId);
     c.width = j.width;
@@ -30,9 +30,9 @@ function displayImage(canvasId, url, diffId, origId) {
 }
 
 function loadImages() {
-  displayImage("c1", "../test/fixtures/j1.jpg" ,"d1" ,"a1");
-  displayImage("c2", "../test/fixtures/j2.jpg" ,"d2" ,"a2");
-  displayImage("c3", "../test/fixtures/j3.jpg" ,"d3" ,"a3");
+  displayImage("c1", "../fixtures/j1.jpg" ,"d1" ,"a1");
+  displayImage("c2", "../fixtures/j2.jpg" ,"d2" ,"a2");
+  displayImage("c3", "../fixtures/j3.jpg" ,"d3" ,"a3");
 }
 
 
@@ -48,9 +48,9 @@ function loadImages() {
         <th>jpgJS</th>
     </tr>
       <tr>
-          <td><img src="../test/fixtures/j1.jpg" id="a1"></td>
-          <td><img src="../test/fixtures/j2.jpg" id="a2"></td>
-          <td><img src="../test/fixtures/j3.jpg" id="a3"></td>
+          <td><img src="../fixtures/j1.jpg" id="a1"></td>
+          <td><img src="../fixtures/j2.jpg" id="a2"></td>
+          <td><img src="../fixtures/j3.jpg" id="a3"></td>
           <th>Browser</th>
       </tr>
       <tr>
