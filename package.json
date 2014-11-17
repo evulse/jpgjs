@@ -1,0 +1,18 @@
+{
+    "name": "jpgjs",
+    "description": "Simple JPEG/DCT data decoder in JavaScript.",
+    "directories": {
+        "example": "example",
+        "test": "test"
+    },
+    "scripts": {
+        "test": "vows --spec"
+    },
+    "dependencies": {
+    },
+    "devDependencies": {
+        "canvas": "^1.1.6",
+        "vows": "^0.8.0",
+        "imagediff": "^1.0.7"
+    }
+}

@@ -3,7 +3,7 @@
    - http://creativecommons.org/publicdomain/zero/1.0/ -->
 <html>
 <head>
-<script src="jpg.js"></script>
+<script src="../jpg.js"></script>
 <script>
 function Benchmark(config) {
   this.config = config;
@@ -80,9 +80,9 @@ Benchmark.prototype.finish = function() {
 function go() {
   var config = {
     images: [
-      'j1.jpg',
-      'j2.jpg',
-      'j3.jpg'
+      '../test/fixtures/j1.jpg',
+      '../test/fixtures/j2.jpg',
+      '../test/fixtures/j3.jpg'
     ],
     samples: 50
   };
