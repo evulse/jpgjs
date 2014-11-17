@@ -3,7 +3,7 @@
     "version": "1.0.0",
     "description": "Simple JPEG/DCT data decoder in JavaScript.",
     "scripts": {
-        "test": "node test"
+        "test": "vows test/* --spec"
     },
     "dependencies": {
     },
